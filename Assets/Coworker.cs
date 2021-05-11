@@ -6,13 +6,18 @@ using UnityEngine;
 
 public class Coworker : MonoBehaviour
 {
-
-	//RigidBody rb;
+Rigidbody rb;
+	
+	float xInput;
+	float zInput;  
+	public float speed;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		//rb = GetCompnent<RigidBody>();
+		//public float speed;
+		rb = GetComponent<Rigidbody>();
+		
 	}
 
 	// Update is called once per frame
@@ -20,8 +25,13 @@ public class Coworker : MonoBehaviour
 	{
 		if( Input.GetKeyDown( KeyCode.Space ))
 		{
-			Destroy( gameObject );
+			//Destroy( gameObject );
+			rb.AddForce( Vector3.up * 500 );
 		}
+		xInput = Input.GetAxis("Horizontal");
+		zInput = Input.GetAxis("Vertical");
+
+		rb.AddForce( zInput * speed, 0, xInput * speed );
 	}
 
 }
